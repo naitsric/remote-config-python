@@ -14,4 +14,4 @@ def get_config_key(key):
         Payload=json.dumps({'key': key}),
     )
 
-    return json.loads(response['Payload'].read().decode('utf-8'))
+    return json.loads(response['Payload'].read().decode('utf-8')).get('value')
