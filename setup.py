@@ -10,7 +10,7 @@ setup(
     keywords='lqn',
     packages=find_packages(exclude=['docs', 'tests*']),
     install_requires=[
-        'pika',
+        'boto3',
     ],
     extras_require={
         'test': ['unittest'],
