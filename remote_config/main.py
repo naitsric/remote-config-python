@@ -3,7 +3,7 @@ from functools import lru_cache
 
 import boto3
 
-client = boto3.client('lambda')
+client = boto3.client('lambda', region_name='us-west-2')
 
 
 @lru_cache(maxsize=32)
