@@ -2,12 +2,31 @@ import json
 from functools import lru_cache
 
 import boto3
+import sys
 
 client = boto3.client('lambda')
 
+DEV = "DEV"
+PRD = "PRD"
+STG = "STG"
+
+
+def get_env():
+    for env in sys.argv:
+        if DEV == env.upper():
+            return DEV
+        if PRD == env.upper():
+            return PRD
+        if STG == env.upper():
+            return STG
+    return PRD
+
 
 @lru_cache(maxsize=32)
-def get_config_key(key, env="PRD"):
+def get_config_key(key):
+
+    env = get_env()
+
     response = client.invoke(
         FunctionName='remote-config',
         InvocationType='RequestResponse',
