@@ -20,8 +20,8 @@ def get_env():
         if STG == env.upper():
             return STG
 
-    if os.environ['APP_ENV'] in [DEV, PRD, STG]:
-        return os.environ['APP_ENV']
+    if os.environ['APP_ENV'].upper() in [DEV, PRD, STG]:
+        return os.environ['APP_ENV'].upper()
 
     return PRD
 
