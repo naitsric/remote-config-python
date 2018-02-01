@@ -2,7 +2,7 @@ import json
 from functools import lru_cache
 
 import boto3
-import sys
+import sys, os
 
 client = boto3.client('lambda')
 
@@ -19,6 +19,10 @@ def get_env():
             return PRD
         if STG == env.upper():
             return STG
+
+    if os.environ['APP_ENV'] in [DEV, PRD, STG]:
+        return os.environ['APP_ENV']
+
     return PRD
 
 
