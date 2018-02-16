@@ -9,6 +9,7 @@ client = boto3.client('lambda')
 DEV = "DEV"
 PRD = "PRD"
 STG = "STG"
+LOCAL = "LOCAL"
 
 
 def get_env():
@@ -19,8 +20,10 @@ def get_env():
             return PRD
         if STG == env.upper():
             return STG
+        if LOCAL == env.upper():
+            return LOCAL
 
-    if os.environ['APP_ENV'].upper() in [DEV, PRD, STG]:
+    if os.environ['APP_ENV'].upper() in [DEV, PRD, STG, LOCAL]:
         return os.environ['APP_ENV'].upper()
 
     return PRD
